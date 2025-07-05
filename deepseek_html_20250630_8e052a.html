@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GR7 Ultimate Gaming Hub - All Games</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --darker: #1e272e;
+            --light: #f5f6fa;
+            --android: #3ddc84;
+            --ios: #007aff;
+            --pc: #3498db;
+            --action: #e74c3c;
+            --rpg: #9b59b6;
+            --sports: #2ecc71;
+            --strategy: #f39c12;
+            --battle: #e67e22;
+            --adventure: #1abc9c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--dark);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            padding: 80px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light);
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 30px 0 0 30px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            padding: 15px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: var(--secondary);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 60px 5%;
+            background: var(--darker);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: var(--dark);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .category-info {
+            padding: 20px;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .category-count {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        /* Games Section */
+        .games {
+            padding: 60px 5%;
+            background: var(--dark);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: var(--darker);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .game-description {
+            color: #b8b8b8;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .game-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .download-btn.pc {
+            background: var(--pc);
+            color: white;
+        }
+
+        .download-btn.android {
+            background: var(--android);
+            color: #0f0f1a;
+        }
+
+        .download-btn.ios {
+            background: var(--ios);
+            color: white;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Auth Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.3);
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #b8b8b8;
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            background: var(--darker);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .modal-input:focus {
+            outline: 2px solid var(--primary);
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #b8b8b8;
+        }
+
+        .modal-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 50px 5% 30px;
+            color: #b8b8b8;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #b8b8b8;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+            
+            .search-bar input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+            
+            .search-bar button {
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="logo-text">GR7 Gaming Hub</div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+            <a href="#" class="nav-link"><i class="fas fa-gamepad"></i> Games</a>
+            <a href="#" class="nav-link"><i class="fas fa-mobile-alt"></i> Mobile</a>
+            <a href="#" class="nav-link"><i class="fas fa-desktop"></i> PC</a>
+            <a href="#" class="nav-link"><i class="fas fa-trophy"></i> Top Games</a>
+        </nav>
+        
+        <div class="user-actions">
+            <button class="btn btn-outline" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+            <button class="btn btn-primary" id="registerBtn"><i class="fas fa-user-plus"></i> Register</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover & Download Awesome Games</h1>
+            <p>Thousands of games for PC and mobile. All in one place with direct download links.</p>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for games...">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2 class="section-title">Game Categories</h2>
+        
+        <div class="category-grid">
+            <!-- Action -->
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Action Games" class="category-image">
+                <div class="category-info">
+                    <h3 class="category-title"><i class="fas fa-fighter-jet" style="color: var(--action);"></i> Action</h3>
+                    <div class="category-count">42 Games</div>
+                </div>
+            </div>
+            
+            <!-- RPG -->
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="RPG Games" class="category-image">
+                <div class="category-info">
+                    <h3 class="category-title"><i class="fas fa-dragon" style="color: var(--rpg);"></i> RPG</h3>
+                    <div class="category-count">36 Games</div>
+                </div>
+            </div>
+            
+            <!-- Sports -->
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1605&q=80" alt="Sports Games" class="category-image">
+                <div class="category-info">
+                    <h3 class="category-title"><i class="fas fa-running" style="color: var(--sports);"></i> Sports</h3>
+                    <div class="category-count">28 Games</div>
+                </div>
+            </div>
+            
+            <!-- Strategy -->
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1585506942812-e72b29cef752?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1926&q=80" alt="Strategy Games" class="category-image">
+                <div class="category-info">
+                    <h3 class="category-title"><i class="fas fa-chess" style="color: var(--strategy);"></i> Strategy</h3>
+                    <div class="category-count">31 Games</div>
+                </div>
+            </div>
+            
+            <!-- Battle Royale -->
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Battle Royale Games" class="category-image">
+                <div class="category-info">
+                    <h3 class="category-title"><i class="fas fa-crosshairs" style="color: var(--battle);"></i> Battle Royale</h3>
+                    <div class="category-count">19 Games</div>
+                </div>
+            </div>
+            
+            <!-- Adventure -->
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Adventure Games" class="category-image">
+                <div class="category-info">
+                    <h3 class="category-title"><i class="fas fa-mountain" style="color: var(--adventure);"></i> Adventure</h3>
+                    <div class="category-count">27 Games</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Games Section -->
+    <section class="games">
+        <h2 class="section-title">Popular Games</h2>
+        
+        <div class="games-grid">
+            <!-- Action Games -->
+            <div class="game-card">
+                <div class="game-badge">HOT</div>
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU5KfFnk5Zpsw3tLbE.png" alt="Genshin Impact" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-dragon" style="color: var(--rpg);"></i> Genshin Impact
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.8</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 10M+</span>
+                    </div>
+                    <p class="game-description">Open-world action RPG with stunning visuals and elemental combat system.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Genshin Impact">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                        <button class="download-btn android" data-game="Genshin Impact">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="Genshin Impact">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202008/1420/HcLcfeQBXd7i2LT87q5XvXGZ.png" alt="Call of Duty Mobile" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-crosshairs" style="color: var(--action);"></i> COD Mobile
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.7</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 500M+</span>
+                    </div>
+                    <p class="game-description">Console-quality FPS action with Battle Royale and multiplayer modes.</p>
+                    <div class="game-actions">
+                        <button class="download-btn android" data-game="COD Mobile">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="COD Mobile">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-badge">NEW</div>
+                <img src="https://media.contentapi.ea.com/content/dam/ea/fc/fc-24/common/fc24-game-featured-image-16x9.jpg.adapt.crop191x100.1200w.jpg" alt="FC 24" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-futbol" style="color: var(--sports);"></i> FC 24
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.5</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 50M+</span>
+                    </div>
+                    <p class="game-description">The ultimate football experience with HyperMotion technology.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="FC 24">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                        <button class="download-btn android" data-game="FC 24">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="FC 24">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_2022_Game_Clouds_1920x1080.jpg" alt="Minecraft" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-cube" style="color: var(--adventure);"></i> Minecraft
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.9</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 238M+</span>
+                    </div>
+                    <p class="game-description">Build, explore and survive in this blocky sandbox adventure.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Minecraft">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                        <button class="download-btn android" data-game="Minecraft">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="Minecraft">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Action Games -->
+            <div class="game-card">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0119/a4YbVUAu3Bm8KXHZfYwQJd3Y.png" alt="Cyberpunk 2077" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-robot" style="color: var(--action);"></i> Cyberpunk 2077
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.2</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 20M+</span>
+                    </div>
+                    <p class="game-description">Open-world RPG set in Night City, a megalopolis obsessed with power and body modification.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Cyberpunk 2077">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-badge">HOT</div>
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0119/a4YbVUAu3Bm8KXHZfYwQJd3Y.png" alt="Grand Theft Auto V" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-car" style="color: var(--action);"></i> GTA V
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.8</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 150M+</span>
+                    </div>
+                    <p class="game-description">The biggest, most dynamic and most diverse open world ever created.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="GTA V">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RPG Games -->
+            <div class="game-card">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0119/a4YbVUAu3Bm8KXHZfYwQJd3Y.png" alt="The Witcher 3" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-dragon" style="color: var(--rpg);"></i> The Witcher 3
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.9</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 50M+</span>
+                    </div>
+                    <p class="game-description">A story-driven open world RPG set in a visually stunning fantasy universe.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="The Witcher 3">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-badge">NEW</div>
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0119/a4YbVUAu3Bm8KXHZfYwQJd3Y.png" alt="Elden Ring" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-skull" style="color: var(--rpg);"></i> Elden Ring
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.7</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 20M+</span>
+                    </div>
+                    <p class="game-description">A new fantasy action RPG where you must explore the Lands Between.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Elden Ring">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sports Games -->
+            <div class="game-card">
+                <img src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-23/common/fifa23-game-featured-image-16x9.jpg.adapt.crop191x100.1200w.jpg" alt="FIFA 23" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-futbol" style="color: var(--sports);"></i> FIFA 23
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.3</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 30M+</span>
+                    </div>
+                    <p class="game-description">The latest installment in the FIFA series with improved gameplay.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="FIFA 23">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                        <button class="download-btn android" data-game="FIFA 23">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="FIFA 23">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://2kdb.net/images/nba-2k24-cover.jpg" alt="NBA 2K24" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-basketball-ball" style="color: var(--sports);"></i> NBA 2K24
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.1</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 15M+</span>
+                    </div>
+                    <p class="game-description">The most realistic basketball simulation with MyCareer and MyTeam modes.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="NBA 2K24">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                        <button class="download-btn android" data-game="NBA 2K24">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="NBA 2K24">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Strategy Games -->
+            <div class="game-card">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/289070/header.jpg" alt="Civilization VI" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-chess" style="color: var(--strategy);"></i> Civilization VI
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.6</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 12M+</span>
+                    </div>
+                    <p class="game-description">Build an empire to stand the test of time in this turn-based strategy game.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Civilization VI">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/813780/header.jpg" alt="Age of Empires IV" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-chess-king" style="color: var(--strategy);"></i> Age of Empires IV
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.5</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 8M+</span>
+                    </div>
+                    <p class="game-description">The real-time strategy game returns with modernized gameplay.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Age of Empires IV">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Battle Royale Games -->
+            <div class="game-card">
+                <img src="https://cdn2.unrealengine.com/egs-fortnite-chapter4og-s10-1920x1080-1920x1080-9a3e462daf80.jpg" alt="Fortnite" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-crosshairs" style="color: var(--battle);"></i> Fortnite
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.4</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 350M+</span>
+                    </div>
+                    <p class="game-description">Battle Royale phenomenon with building mechanics and seasonal updates.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Fortnite">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                        <button class="download-btn android" data-game="Fortnite">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="Fortnite">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202010/0119/a4YbVUAu3Bm8KXHZfYwQJd3Y.png" alt="Apex Legends" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-skull" style="color: var(--battle);"></i> Apex Legends
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.3</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 100M+</span>
+                    </div>
+                    <p class="game-description">Hero-based Battle Royale with unique character abilities.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Apex Legends">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                        <button class="download-btn android" data-game="Apex Legends">
+                            <i class="fab fa-android"></i> Android
+                        </button>
+                        <button class="download-btn ios" data-game="Apex Legends">
+                            <i class="fab fa-apple"></i> iOS
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Adventure Games -->
+            <div class="game-card">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-mountain" style="color: var(--adventure);"></i> Elden Ring
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.7</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 20M+</span>
+                    </div>
+                    <p class="game-description">A new fantasy action RPG where you must explore the Lands Between.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Elden Ring">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg" alt="The Legend of Zelda" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">
+                        <i class="fas fa-sword" style="color: var(--adventure);"></i> Zelda: Tears of Kingdom
+                    </h3>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star" style="color: var(--accent);"></i> 4.9</span>
+                        <span><i class="fas fa-download" style="color: var(--primary);"></i> 18M+</span>
+                    </div>
+                    <p class="game-description">Explore Hyrule and uncover the mystery of the kingdom's destruction.</p>
+                    <div class="game-actions">
+                        <button class="download-btn pc" data-game="Zelda: Tears of Kingdom">
+                            <i class="fas fa-desktop"></i> PC
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <h2 class="modal-title">Welcome to GR7 Gaming Hub</h2>
+            
+            <div id="loginForm">
+                <input type="text" class="modal-input" placeholder="Email or Username">
+                <input type="password" class="modal-input" placeholder="Password">
+                <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <div class="modal-footer">
+                    Don't have an account? <a href="#" id="showRegister">Register</a>
+                </div>
+            </div>
+            
+            <div id="registerForm" style="display: none;">
+                <input type="text" class="modal-input" placeholder="Username">
+                <input type="email" class="modal-input" placeholder="Email">
+                <input type="password" class="modal-input" placeholder="Password">
+                <input type="password" class="modal-input" placeholder="Confirm Password">
+                <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+                <div class="modal-footer">
+                    Already have an account? <a href="#" id="showLogin">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeDownloadModal">&times;</span>
+            <h2 class="modal-title">Download <span id="downloadGameName">Game</span></h2>
+            <p>Please select your platform:</p>
+            
+            <div class="game-actions" style="margin-top: 20px;">
+                <button class="download-btn pc" style="width: 100%; margin-bottom: 10px;">
+                    <i class="fas fa-desktop"></i> Download for PC
+                </button>
+                <button class="download-btn android" style="width: 100%; margin-bottom: 10px;">
+                    <i class="fab fa-android"></i> Download for Android
+                </button>
+                <button class="download-btn ios" style="width: 100%;">
+                    <i class="fab fa-apple"></i> Download for iOS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>GR7 Gaming Hub</h3>
+                <p>Your ultimate destination for game downloads. Thousands of games for all platforms in one place.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Popular Games</a></li>
+                    <li><a href="#">New Releases</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Platforms</h3>
+                <ul class="footer-links">
+                    <li><a href="#">PC Games</a></li>
+                    <li><a href="#">Android Games</a></li>
+                    <li><a href="#">iOS Games</a></li>
+                    <li><a href="#">Windows Games</a></li>
+                    <li><a href="#">Mac Games</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">DMCA</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 GR7 Gaming Hub. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Game download links
+        const gameLinks = {
+            "Genshin Impact": {
+                pc: "https://genshin.hoyoverse.com/en/download",
+                android: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
+                ios: "https://apps.apple.com/us/app/genshin-impact/id1517783697"
+            },
+            "COD Mobile": {
+                android: "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter",
+                ios: "https://apps.apple.com/us/app/call-of-duty-mobile/id1287282214"
+            },
+            "FC 24": {
+                pc: "https://www.ea.com/games/ea-sports-fc/fc-24/buy",
+                android: "https://play.google.com/store/apps/details?id=com.ea.gp.fifamobile",
+                ios: "https://apps.apple.com/us/app/ea-sports-fc-mobile-24/id6443856430"
+            },
+            "Minecraft": {
+                pc: "https://www.minecraft.net/en-us/download",
+                android: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
+                ios: "https://apps.apple.com/us/app/minecraft/id479516143"
+            },
+            "Cyberpunk 2077": {
+                pc: "https://www.cyberpunk.net/us/en/buy"
+            },
+            "GTA V": {
+                pc: "https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/"
+            },
+            "The Witcher 3": {
+                pc: "https://store.steampowered.com/app/292030/The_Witcher_3_Wild_Hunt/"
+            },
+            "Elden Ring": {
+                pc: "https://store.steampowered.com/app/1245620/ELDEN_RING/"
+            },
+            "FIFA 23": {
+                pc: "https://www.ea.com/games/fifa/fifa-23/buy",
+                android: "https://play.google.com/store/apps/details?id=com.ea.gp.fifamobile",
+                ios: "https://apps.apple.com/us/app/fifa-mobile-soccer/id1145275363"
+            },
+            "NBA 2K24": {
+                pc: "https://store.steampowered.com/app/1644960/NBA_2K24/",
+                android: "https://play.google.com/store/apps/details?id=com.t2ksports.nba2k23and",
+                ios: "https://apps.apple.com/us/app/nba-2k-mobile-basketball/id1450156211"
+            },
+            "Civilization VI": {
+                pc: "https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/"
+            },
+            "Age of Empires IV": {
+                pc: "https://store.steampowered.com/app/1466860/Age_of_Empires_IV/"
+            },
+            "Fortnite": {
+                pc: "https://www.fortnite.com/download",
+                android: "https://www.fortnite.com/android",
+                ios: "https://apps.apple.com/us/app/fortnite/id1261357853"
+            },
+            "Apex Legends": {
+                pc: "https://www.ea.com/games/apex-legends",
+                android: "https://play.google.com/store/apps/details?id=com.ea.gp.apexlegendsmobilefps",
+                ios: "https://apps.apple.com/us/app/apex-legends-mobile/id1602377262"
+            },
+            "Zelda: Tears of Kingdom": {
+                pc: "https://www.nintendo.com/store/products/the-legend-of-zelda-tears-of-the-kingdom-switch/"
+            }
+        };
+        
+        // Auth Modal
+        const authModal = document.getElementById('authModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const closeAuthModal = document.getElementById('closeAuthModal');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        
+        // Download Modal
+        const downloadModal = document.getElementById('downloadModal');
+        const closeDownloadModal = document.getElementById('closeDownloadModal');
+        const downloadGameName = document.getElementById('downloadGameName');
+        
+        // Open auth modal
+        loginBtn.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+        });
+        
+        registerBtn.addEventListener('click', () => {
+            authModal.style.display = 'flex';
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+        });
+        
+        // Switch between login/register
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+        });
+        
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+        });
+        
+        // Close modals
+        closeAuthModal.addEventListener('click', () => {
+            authModal.style.display = 'none';
+        });
+        
+        closeDownloadModal.addEventListener('click', () => {
+            downloadModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.style.display = 'none';
+            }
+            if (e.target === downloadModal) {
+                downloadModal.style.display = 'none';
+            }
+        });
+        
+        // Download buttons
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // In a real app, check if user is logged in first
+                const isLoggedIn = false; // Change to true after login
+                const gameName = this.getAttribute('data-game');
+                
+                if (!isLoggedIn) {
+                    authModal.style.display = 'flex';
+                    // Store game name for after login
+                    sessionStorage.setItem('pendingDownload', gameName);
+                } else {
+                    // Show download options
+                    downloadGameName.textContent = gameName;
+                    
+                    // Set download links
+                    const pcBtn = document.querySelector('#downloadModal .download-btn.pc');
+                    const androidBtn = document.querySelector('#downloadModal .download-btn.android');
+                    const iosBtn = document.querySelector('#downloadModal .download-btn.ios');
+                    
+                    if (gameLinks[gameName]?.pc) {
+                        pcBtn.style.display = 'flex';
+                        pcBtn.onclick = () => window.open(gameLinks[gameName].pc, '_blank');
+                    } else {
+                        pcBtn.style.display = 'none';
+                    }
+                    
+                    if (gameLinks[gameName]?.android) {
+                        androidBtn.style.display = 'flex';
+                        androidBtn.onclick = () => window.open(gameLinks[gameName].android, '_blank');
+                    } else {
+                        androidBtn.style.display = 'none';
+                    }
+                    
+                    if (gameLinks[gameName]?.ios) {
+                        iosBtn.style.display = 'flex';
+                        iosBtn.onclick = () => window.open(gameLinks[gameName].ios, '_blank');
+                    } else {
+                        iosBtn.style.display = 'none';
+                    }
+                    
+                    downloadModal.style.display = 'flex';
+                }
+            });
+        });
+        
+        // After successful login (simulated)
+        document.querySelector('#loginForm button').addEventListener('click', function() {
+            // In a real app, validate credentials here
+            setTimeout(() => {
+                authModal.style.display = 'none';
+                
+                // Check if there was a pending download
+                const pendingGame = sessionStorage.getItem('pendingDownload');
+                if (pendingGame) {
+                    downloadGameName.textContent = pendingGame;
+                    
+                    // Set download links
+                    const pcBtn = document.querySelector('#downloadModal .download-btn.pc');
+                    const androidBtn = document.querySelector('#downloadModal .download-btn.android');
+                    const iosBtn = document.querySelector('#downloadModal .download-btn.ios');
+                    
+                    if (gameLinks[pendingGame]?.pc) {
+                        pcBtn.style.display = 'flex';
+                        pcBtn.onclick = () => window.open(gameLinks[pendingGame].pc, '_blank');
+                    } else {
+                        pcBtn.style.display = 'none';
+                    }
+                    
+                    if (gameLinks[pendingGame]?.android) {
+                        androidBtn.style.display = 'flex';
+                        androidBtn.onclick = () => window.open(gameLinks[pendingGame].android, '_blank');
+                    } else {
+                        androidBtn.style.display = 'none';
+                    }
+                    
+                    if (gameLinks[pendingGame]?.ios) {
+                        iosBtn.style.display = 'flex';
+                        iosBtn.onclick = () => window.open(gameLinks[pendingGame].ios, '_blank');
+                    } else {
+                        iosBtn.style.display = 'none';
+                    }
+                    
+                    downloadModal.style.display = 'flex';
+                    sessionStorage.removeItem('pendingDownload');
+                }
+            }, 1000);
+        });
+        
+        // After successful registration (simulated)
+        document.querySelector('#registerForm button').addEventListener('click', function() {
+            // In a real app, validate and register user
+            setTimeout(() => {
+                authModal.style.display = 'none';
+                
+                // Check if there was a pending download
+                const pendingGame = sessionStorage.getItem('pendingDownload');
+                if (pendingGame) {
+                    downloadGameName.textContent = pendingGame;
+                    
+                    // Set download links
+                    const pcBtn = document.querySelector('#downloadModal .download-btn.pc');
+                    const androidBtn = document.querySelector('#downloadModal .download-btn.android');
+                    const iosBtn = document.querySelector('#downloadModal .download-btn.ios');
+                    
+                    if (gameLinks[pendingGame]?.pc) {
+                        pcBtn.style.display = 'flex';
+                        pcBtn.onclick = () => window.open(gameLinks[pendingGame].pc, '_blank');
+                    } else {
+                        pcBtn.style.display = 'none';
+                    }
+                    
+                    if (gameLinks[pendingGame]?.android) {
+                        androidBtn.style.display = 'flex';
+                        androidBtn.onclick = () => window.open(gameLinks[pendingGame].android, '_blank');
+                    } else {
+                        androidBtn.style.display = 'none';
+                    }
+                    
+                    if (gameLinks[pendingGame]?.ios) {
+                        iosBtn.style.display = 'flex';
+                        iosBtn.onclick = () => window.open(gameLinks[pendingGame].ios, '_blank');
+                    } else {
+                        iosBtn.style.display = 'none';
+                    }
+                    
+                    downloadModal.style.display = 'flex';
+                    sessionStorage.removeItem('pendingDownload');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
